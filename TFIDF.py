@@ -59,7 +59,8 @@ class TF_IDF:
         return self.tf(word, document_index) * self.idf(word)
 
     def tfidf_all_words(self, document_index, normalized:bool ,limit=None):
-        word_scores = [(word, self.tfidf(word, document_index)) for word in self._documents[document_index]]
+        unique_words = set(self._documents[document_index])
+        word_scores = [(word, self.tfidf(word, document_index)) for word in unique_words]
 
         scores = [word_score[1] for word_score in word_scores]
 
